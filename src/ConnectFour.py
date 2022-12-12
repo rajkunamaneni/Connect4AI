@@ -2,7 +2,7 @@ import argparse
 import multiprocessing as mp
 import tkinter as tk
 import numpy as np
-from src.Player import AIPlayer, RandomPlayer, HumanPlayer
+from Player import AIPlayer, RandomPlayer, HumanPlayer
 
 
 def turn_worker(board, send_end, p_func):
