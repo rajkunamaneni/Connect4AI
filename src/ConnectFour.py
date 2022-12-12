@@ -1,13 +1,8 @@
-# system libs
 import argparse
 import multiprocessing as mp
 import tkinter as tk
-
-# 3rd party libs
 import numpy as np
-
-# Local libs
-from Player import AIPlayer, RandomPlayer, HumanPlayer
+from src.Player import AIPlayer, RandomPlayer, HumanPlayer
 
 
 def turn_worker(board, send_end, p_func):

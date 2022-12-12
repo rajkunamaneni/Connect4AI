@@ -57,7 +57,7 @@ class AIPlayer:
             if self.depth == self.maxdepth or find_move(board):
                 return self.evaluation_function(board)
             for move in find_move(board):
-                r, c = move  # unpack list
+                r, c = move
                 board[r][c] = player
                 self.depth += 1
                 x = max(x, minvalue(board, alpha, beta, player, oppenent))
@@ -69,14 +69,13 @@ class AIPlayer:
         alpha, beta, vltype, player = -np.inf, np.inf, list(), self.player_number
         opponent = 2 if player == 1 else 1
         for move in find_move(board):
-            r, c = move  # unpack list
+            r, c = move
             board[r][c] = player
             self.depth += 1
 
             alpha = max(alpha, minvalue(board, alpha, beta, player, opponent))
             vltype.append((alpha, c))
-            board[r][c] = 0  # reset board state
-        # get first value in column (need for return)
+            board[r][c] = 0
         value = (max(vltype, key=lambda x: x[1])[0])
         for type in vltype:
             if value in type:
@@ -110,7 +109,7 @@ class AIPlayer:
                 for row in range(board.shape[0]):
                     if board[row][col] == 0:
                         valid_cols.append([row, col])
-                        break  # needed to make changes to expectimax work
+                        break
             return valid_cols
 
         def maxvalue(board, player, oppenent, depth):
@@ -118,7 +117,7 @@ class AIPlayer:
             if depth == self.mindepth or not find_move(board):
                 return (self.evaluation_function(board))
             for move in find_move(board):
-                r, c = move  # unpack list
+                r, c = move
                 board[r][c] = player
                 x = max(x, expectedval(board, player, oppenent, depth-1))
             return x
@@ -128,7 +127,7 @@ class AIPlayer:
             if depth == self.mindepth or not find_move(board):
                 return (self.evaluation_function(board))
             for move in find_move(board):
-                r, c = move  # unpack list
+                r, c = move
                 board[r][c] = oppenent
                 x += maxvalue(board, player, oppenent, depth-1)
             return (x/savep)
@@ -136,12 +135,11 @@ class AIPlayer:
         depth, vltype, player, x = 8, list(), self.player_number, -np.inf
         opponent = 2 if player == 1 else 1
         for move in find_move(board):
-            r, c = move  # unpack list
+            r, c = move
             board[r][c] = player
             x = max(x, expectedval(board, player, opponent, depth-1))
             vltype.append((x, c))
-            board[r][c] = 0  # reset board state
-        # get first value in column (need for return)
+            board[r][c] = 0
         value = (max(vltype, key=lambda x: x[1])[0])
         for type in vltype:
             if value in type:
