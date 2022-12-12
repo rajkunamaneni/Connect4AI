@@ -215,6 +215,7 @@ class RandomPlayer:
         self.type = 'random'
         self.player_string = 'Player {}:random'.format(player_number)
 
+    # random player input
     def get_move(self, board):
         """
         Given the current board state select a random column from the available
@@ -246,6 +247,7 @@ class HumanPlayer:
         self.type = 'human'
         self.player_string = 'Player {}:human'.format(player_number)
 
+    # human player input
     def get_move(self, board):
         """
         Given the current board state returns the human input for next move
